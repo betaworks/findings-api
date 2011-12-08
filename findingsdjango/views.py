@@ -11,7 +11,7 @@ from django.template.loader import select_template, render_to_string
 from django.shortcuts import render_to_response, get_object_or_404
 
 from labs.findings_client import FindingsOAuthClient, API_SETTINGS, API_URL
-from labs.findingsapi.models import FindingsArticleForm
+from labs.findingsdjango.models import FindingsArticleForm
 
 def _single(request, data):
     templates = ["base.html"]
