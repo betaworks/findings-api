@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <title>API test</title>
+    <script src="https://www.google.com/jsapi?key=ABQIAAAA6CLCmfeXn7eqMKcgBVQ6ZBSkXmBlIMPOBBjeAdtuxbhUXCxPCBTJc8IdMc_dq0ro7bNbYMFrZcQ4wg" type="text/javascript"></script>
+    <script type="text/javascript">
+      google.load("jquery", "1.4.2");
+      function findings_connect(elem) {
+        var href = $(elem).attr("href");
+        window.open(href,'login','height=300, width=350, scrollbars=yes');
+        return false;
+      }
+    </script>
+    <style type="text/css">
+      body {font-family: Arial; font-size: 12px; background-color: #999; line-height: 1.75em;}
+      h2 {padding: 5px; background-color: #999; color: #fff;}
+      a {text-decoration: none;}
+      .logout {position: relative; float: right;}
+      .error {color: red;}
+
+      .entryarea {width: 600px; margin: auto; background-color: #fff; padding: 20px;}
+      .entryarea ul, .entryarea li {padding: 0; margin: 0; list-style: none;}
+      .entryarea li {margin-bottom: 25px; clear: left;}
+      .entryarea img {float: left; margin-right: 15px;}
+
+      .action {display: inline; padding: 10px; background-color: #333; color: #fff; text-align: center;}
+      .action:hover {background-color: #666;}
+      .action a {color: #fff; font-size: 18px;}
+
+      .tabs {height: 20px;}
+      .tabs li {float: left; clear: none; padding: 5px; background-color: #ddd; border: 1px solid #333; margin-right: 10px;}
+      .tabs li {border-bottom: none;}
+      .tabs li.active {background-color: #fff;}
+
+      form {clear: both;}
+      form label {display: inline; float: left; width: 65px;}
+      form input, form textarea {width: 500px;}
+      form .submit {width: auto;}
+      form .errorlist {color: red;}
+    </style>
+  </head>
+  <body>
+
+    {% block content %}
+    <div class="entryarea">
+
+        <h2>enter a finding</h2>
+        {% if data.oauth %}
+        <a href="/findingsapi/clear/" class="logout">logout</a>
+        {% include "entryform.html" %}
+        {% else %}
+        <p class="action"><a href="/findingsapi/login/" onclick="javascript: return findings_connect(this);">connect to findings</a></p>
+        {% endif %}
+
+        {% if data.oauth %}
+        <h2>{{ data.profile.0.username }}'s findings</h2>
+        <ul class="entries">
+          {% for item in data.clips %}
+          <li>
+            <b>{% ifequal item.document.type "article" %}
+              <a href="{{ item.document.url }}" target="_blank">web &raquo;</a>
+              {% else %}
+              book &raquo;
+              {% endifequal %}</b>
+            <br />
+            <img src="{{ item.document.image_small }}" alt="-" />
+            <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+            {{ item.content }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+    </div>
+    {% endblock %}
+
+  </body>
+</html>

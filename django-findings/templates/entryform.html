@@ -1,0 +1,34 @@
+
+<div class="entryform">
+  {% if data.msg %}
+  <p class="error">{{ data.msg }}</p>
+  {% endif %}
+  <ul class="tabs">
+    <li class="book"><a href="#book" onclick="javscript: return entry(this, 'book');">enter book</a></li>
+    <li class="web"><a href="#web" onclick="javscript: return entry(this, 'web');">enter article</a></li>
+  </ul>
+  <form action="" method="POST">
+    {{ data.form.as_p }}
+    {% csrf_token %}
+    <input type="submit" value="send" class="submit" />
+  </form>
+</div>
+
+<script type="text/javascript">
+function showform(name) {
+  if(name == "web" || /\#web/.test(location.href)) {
+    var p = $("form #id_isbn").parent();
+    $(".web").addClass("active");
+  } else {
+    var p = $("form #id_url").parent();
+    $(".book").addClass("active");
+  }
+  $(p).hide();
+}
+function entry(elem, name) {
+  $("form p").show();
+  $(".tabs li").removeClass("active");
+  showform(name);
+}
+showform("web");
+</script>
