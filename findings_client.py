@@ -12,7 +12,7 @@ API_SETTINGS = {
     'url':{
       'profile':'%s/me' % (API_URL),
       'get_clips':'%s/me/clips' % (API_URL),
-      'post_clip':'%s/me/clip' % (API_URL),
+      'post_clip':'%s/clip/new' % (API_URL),
       'request_token':'%s/request_token' % (API_OAUTH_URL),
       'authenticate':'%s/authenticate' % (API_OAUTH_URL),
       'access_token':'%s/access_token' % (API_OAUTH_URL),
