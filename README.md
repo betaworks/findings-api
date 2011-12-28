@@ -14,6 +14,10 @@ Put your key and secret from your application into the API_SETTINGS in the clien
 
 See the "findingsdjango" directory in the github repository for an example Findings posting application.
 
+### Atom feed of the public timeline
+
+A public Atom feed of the last 20 clips posted to Findings is available at https://findings.com/api/v1/timeline.xml
+
 ### Terminology
 
 Clip: A clip is a user's clip from a document. It contains information about when and who created it. It will contain the document, and the publisher of the document.
@@ -21,7 +25,6 @@ Clip: A clip is a user's clip from a document. It contains information about whe
 Document: A document is what a user's clip refers to. It's a piece of text with additionally an url (for a web document) or a set of book metadata (for a book clipping).
 
 Page: Contains the next and previous urls for the next and previous set of data about this resultset.
-
 
 ### Caveats
 
@@ -80,8 +83,3 @@ Possible post parameters:
 * note: a note about the clipping
 
 So the required items are "content" and one of either "url" or "isbn".
-
-### Atom feed of the public timeline
-
-A public Atom feed of the last 20 clips posted to Findings is available at https://findings.com/api/v1/timeline.xml
-
