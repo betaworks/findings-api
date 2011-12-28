@@ -22,6 +22,7 @@ Document: A document is what a user's clip refers to. It's a piece of text with 
 
 Page: Contains the next and previous urls for the next and previous set of data about this resultset.
 
+
 ### Caveats
 
 Older documents do not have creation times.
@@ -79,3 +80,8 @@ Possible post parameters:
 * note: a note about the clipping
 
 So the required items are "content" and one of either "url" or "isbn".
+
+### Atom feed of the public timeline
+
+A public Atom feed of the last 20 clips posted to Findings is available at https://findings.com/api/v1/timeline.xml
+
