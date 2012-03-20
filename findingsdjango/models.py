@@ -14,9 +14,7 @@ class FindingsArticle(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        m = hashlib.md5()
-        m.update(self.clipping)
-        self.md5 = m.hexdigest()
+        self.md5 = hashlib.md5(self.clipping.encode('utf-8')).hexdigest()
         super(FindingsArticle, self).save(*args, **kwargs)
 
     def __unicode__(self):

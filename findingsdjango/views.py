@@ -29,6 +29,10 @@ def home(request):
     form = False
     if request.session.has_key("oauth"):
         data['oauth'] = request.session['oauth']
+        data['clips'] = []
+        clipdata = data.get('clipdata', None)
+        if clipdata:
+            data['clips'] = clipdata[0]['clips']
         form = FindingsArticleForm
         urls = {
             'profile':'%s/%s?key=%s' % (
@@ -46,7 +50,6 @@ def home(request):
                 data[k] = simplejson.loads(result)
             except (URLError, HTTPError):
                 result = None
-        data['clips'] = data['clipdata'][0]['clips']
     else:
         data['oauth'] = False
         data['clips'] = None
