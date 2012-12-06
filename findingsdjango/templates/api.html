@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+
+  <p>access_token: {{ access_token }}</p>
+  <p>auth_url: <a href="{{ auth_url }}">{{ auth_url }}</a></p>
+
+  <ul>
+    {% for clip in clips %}
+    <li>
+      <p>{{ clip.source.name }}</p>
+      <p>{{ clip.user.name }}</p>
+      <p>{{ clip.cliptext.content }}</p>
+      <p>{{ clip.created }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+
+</div>
+{% endblock %}

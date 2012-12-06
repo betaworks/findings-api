@@ -1,9 +1,6 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
-    url(r'login/', 'labs.findingsdjango.views.login'),
-    url(r'callback/', 'labs.findingsdjango.views.callback'),
-    url(r'clear/', 'labs.findingsdjango.views.clear'),
-    url(r'sendclip/', 'labs.findingsdjango.views.sendclip'),
-    url(r'', 'labs.findingsdjango.views.home'),
+    url(r'^$', 'labs.apps.apiclient.views.home', name='home'),
+    url(r'^callback/$', 'labs.apps.apiclient.views.callback', name='callback'),
 )
